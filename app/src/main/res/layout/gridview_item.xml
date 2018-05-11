@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="MenuBar"
+            type="com.mcc.data.MenuBar"/>
+    </data>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    > 
+<RelativeLayout
+    android:id="@+id/id_item_group"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+
+    <ImageView
+        android:id="@+id/id_item_image"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@null"
+        app:imageRes="@{MenuBar.id}"/>
+
+    <TextView
+        style="@style/text_fourteen_black"
+        android:id="@+id/id_item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_item_image"
+        android:layout_centerHorizontal="true"
+        android:text="@{MenuBar.name}"
+       />
+</RelativeLayout>
+ </LinearLayout>
+</layout>

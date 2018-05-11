@@ -7,5 +7,41 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
+    <!--图下小标题-->
+    <style name="text_fourteen_black">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/title_black</item>
+    </style>
+    <style name="my_main_title_text">
+        <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/my_main_text</item>
+    </style>
+    <style name="A1_Font">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:shadowDy">-1.0</item>
+        <item name="android:shadowRadius">0.2</item>
+    </style>
+    <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item><!-- 边框 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item><!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item><!-- 无标题 -->
+        <item name="android:windowBackground">@color/color_translucence</item><!-- 自己想要的背景 -->
+        <item name="android:backgroundDimEnabled">true</item><!-- 模糊 -->
+        <!--Dialog进入及退出动画
+       <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>-->
+    </style>
+    <style name="AlertDialogCustom2" parent="@android:style/Theme.Dialog">
+        <item name="android:textColor">#000000</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:windowFrame">@null</item><!-- 边框 -->
+        <item name="android:windowIsFloating">true</item><!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item><!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@null</item>
+        <!-- <item name="android:background">@drawable/login_input</item> -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
 </resources>

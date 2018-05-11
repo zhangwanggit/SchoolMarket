@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="vm"
+            type="com.mcc.viewModel.HomeFragmentVM"></variable>
+    </data>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:openxu="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:gravity="top">
+
+    <com.mcc.scroll.ObservableScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/window_bg">
+
+            <RelativeLayout
+                android:id="@+id/rlbanner_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </RelativeLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/menu_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlbanner_view"
+                android:background="@color/white"
+                android:paddingBottom="10dp"
+                />
+            <com.mcc.view.MyListView
+                android:id="@+id/mylistview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/menu_list_view">
+
+            </com.mcc.view.MyListView>
+        </RelativeLayout>
+
+    </com.mcc.scroll.ObservableScrollView>
+    <RelativeLayout
+        android:id="@+id/view_head"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@color/white">
+
+
+        <RelativeLayout
+            android:id="@+id/gp_rel_search"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <ImageView
+                android:id="@+id/imSearch"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:clickable="true"
+                android:contentDescription="@null"
+                android:src="@drawable/white_search"
+                android:layout_marginLeft="10dp"/>
+
+            <TextView
+                android:id="@+id/tvHomeSearch"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/imSearch"
+                android:gravity="center_vertical"
+                android:hint="请输入关键字"
+                android:textColorHint="@color/white"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
+</layout>

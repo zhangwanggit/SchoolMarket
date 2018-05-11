@@ -14,4 +14,15 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="appName">校园集市</string>
+    <string name="title_activity_mine_account">MineAccountActivity</string>
+    <string name="title_activity_set_nick_name">SetNickNameActivity</string>
+    <string name="title_activity_about_school_market">AboutSchoolMarketActivity</string>
+    <string name="title_activity_feed_back">FeedBackActivity</string>
+    <string name="title_activity_set_sex">SetSexActivity</string>
+    <string name="man">男</string>
+    <string name="woman">女</string>
+    <string name="title_activity_change_password">ChangePasswordActivity</string>
+    <string name="title_activity_my_release">MyReleaseActivity</string>
+    <string name="title_activity_release_good">ReleaseGoodActivity</string>
 </resources>

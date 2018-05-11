@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_head"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="@color/white">
+
+
+    <RelativeLayout
+        android:id="@+id/gp_rel_search"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <ImageView
+            android:id="@+id/imSearch"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:contentDescription="@null"
+            android:src="@drawable/white_search" />
+
+        <TextView
+            android:id="@+id/tvHomeSearch"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/imSearch"
+            android:gravity="center_vertical"
+            android:hint="请输入关键字"
+            android:textColorHint="@color/white"></TextView>
+
+    </RelativeLayout>
+</RelativeLayout>
