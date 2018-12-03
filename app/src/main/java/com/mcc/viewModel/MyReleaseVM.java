@@ -7,8 +7,10 @@ import android.view.View;
 
 import com.mcc.app.MyApplication;
 import com.mcc.data.Good;
+import com.mcc.data.Trend;
 import com.mcc.schoolmarket.MyReleaseActivity;
 import com.mcc.schoolmarket.ReleaseGoodActivity;
+import com.mcc.schoolmarket.ReleaseTrendActivity;
 import com.mcc.sharedPreferences.MySharePreferences;
 import com.mcc.tools.CallBackListener;
 import com.mcc.tools.DatabaseHelper;
@@ -38,9 +40,10 @@ public class MyReleaseVM {
     public void publish(View view){
         if(tabIndex.get()==0){
             Intent intent=new Intent(activity, ReleaseGoodActivity.class);
-            activity.startActivity(intent);
+            activity.startActivityForResult(intent,1);
         }else {
-
+            Intent intent=new Intent(activity, ReleaseTrendActivity.class);
+            activity.startActivityForResult(intent,2);
         }
     }
     public void setTabIndex(int index){
@@ -58,7 +61,7 @@ public class MyReleaseVM {
 
                     @Override
                     public void onError(String message) {
-
+                        ToastUtil.showShortToast("查询出错");
                     }
                 });
         activity.setGoodList(goods);
@@ -76,16 +79,38 @@ public class MyReleaseVM {
 
                     @Override
                     public void onError(String message) {
-
+                        ToastUtil.showShortToast("查询出错");
                     }
                 });
         activity.addGoodList(goods);
     }
     public void refreshTrend(){
         trendPage=0;
+        DatabaseHelper.getInstance(activity).getMyTrendsList(userId, trendPage, new CallBackListener<List<Trend>>() {
+            @Override
+            public void onOK(List<Trend> list) {
+                activity.setTrendList(list);
+            }
+
+            @Override
+            public void onError(String message) {
+                ToastUtil.showShortToast("查询出错");
+            }
+        });
 
     }
     public void loadMoreTrend(){
         trendPage++;
+        DatabaseHelper.getInstance(activity).getMyTrendsList(userId, trendPage, new CallBackListener<List<Trend>>() {
+            @Override
+            public void onOK(List<Trend> list) {
+                activity.addTrendList(list);
+            }
+
+            @Override
+            public void onError(String message) {
+                ToastUtil.showShortToast("查询出错");
+            }
+        });
     }
 }

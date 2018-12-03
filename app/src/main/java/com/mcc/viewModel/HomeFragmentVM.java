@@ -2,9 +2,13 @@ package com.mcc.viewModel;
 
 import android.content.Context;
 
+import com.mcc.data.Good;
 import com.mcc.data.MenuBar;
 import com.mcc.schoolmarket.R;
 import com.mcc.schoolmarket.fragment.HomeFragment;
+import com.mcc.tools.CallBackListener;
+import com.mcc.tools.DatabaseHelper;
+import com.mcc.tools.ToastUtil;
 import com.mcc.view.ImageCycleView;
 
 import java.util.ArrayList;
@@ -22,7 +26,7 @@ public class HomeFragmentVM {
         this.fragment=fragment;
         init();
     }
-    private void init(){
+    public void init(){
         list.add(new ImageCycleView.ImageInfo(R.drawable.banner5,"","",""));
         list.add(new ImageCycleView.ImageInfo(R.drawable.banner1,"","",""));
         list.add(new ImageCycleView.ImageInfo(R.drawable.banner3,"","",""));
@@ -38,7 +42,21 @@ public class HomeFragmentVM {
         menuBarList.add(new MenuBar("百货",R.drawable.icon_baihuo));
         menuBarList.add(new MenuBar("其他",R.drawable.icon_qita));
         fragment.setMenuList(menuBarList);
+        findGoodList();
 
+    }
+    public void findGoodList(){
+        DatabaseHelper.getInstance(fragment.getActivity()).findHotGoodsList(0, new CallBackListener<List<Good>>() {
+            @Override
+            public void onOK(List<Good> list) {
+                fragment.setGoodList(list);
+            }
+
+            @Override
+            public void onError(String message) {
+                ToastUtil.showShortToast(message);
+            }
+        });
     }
 
 }

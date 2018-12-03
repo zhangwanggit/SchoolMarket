@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.bumptech.glide.Glide;
 import com.mcc.adpter.GridImageAdapter;
 import com.mcc.adpter.InfoReleasePopupAdapter;
 import com.mcc.data.ItemConfigEntity;
@@ -52,13 +53,24 @@ public class ReleaseGoodActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding= DataBindingUtil.setContentView(this,R.layout.activity_release_good);
-        vm=new ReleaseGoodVM(mContext,this);
-        binding.setVm(vm);
+        int good_id=getIntent().getIntExtra("good_id",0);
         imgVid = new ArrayList<>();
         imgVid.add("camera_default");
         adapter=new GridImageAdapter(this,(ArrayList<String>) imgVid);
         binding.gvAlbum.setAdapter(adapter);
         init();
+        if(good_id!=0){
+            vm = new ReleaseGoodVM(mContext,this,good_id);
+        }else {
+            vm = new ReleaseGoodVM(mContext, this);
+        }
+        binding.setVm(vm);
+        binding.backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void init(){
 
@@ -108,8 +120,9 @@ public class ReleaseGoodActivity extends BaseActivity {
         ImageLoader loader=new ImageLoader() {
             @Override
             public void displayImage(Context context, String path, ImageView imageView) {
-                Bitmap bitmap= MyUtil.getLoacalBitmap(path);
-                imageView.setImageBitmap(bitmap);
+               /* Bitmap bitmap= MyUtil.getLoacalBitmap(path);
+                imageView.setImageBitmap(bitmap);*/
+                Glide.with(context).load(path).into(imageView);
             }
         };
         ImgSelConfig config=new ImgSelConfig.Builder(mContext,loader)
@@ -162,7 +175,6 @@ public class ReleaseGoodActivity extends BaseActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUtil.showShortToast(classes.get(position).getName());
                 vm.getGood().setClass_id(classes.get(position).getId());
                 dialog.dismiss();
             }
@@ -190,8 +202,6 @@ public class ReleaseGoodActivity extends BaseActivity {
             if (imgVid.size() < 6) {
                 imgVid.add("camera_default");
             }
-            /*imgVid.clear();
-            imgVid.addAll(pathList);*/
             adapter.setData((ArrayList<String>) imgVid);
             adapter.notifyDataSetChanged();
         }
@@ -199,6 +209,19 @@ public class ReleaseGoodActivity extends BaseActivity {
 
     public List<String> getImgVid() {
         return imgVid;
+    }
+    public void setImgVid(List<String> list){
+        imgVid.clear();
+        imgVid.addAll(list);
+        if(imgVid.size()<6){
+            imgVid.add("camera_default");
+            adapter.setData((ArrayList<String>) imgVid);
+            adapter.notifyDataSetChanged();
+        }
+    }
+    public void finishOK(){
+        setResult(RESULT_OK);
+        finish();
     }
 
 }

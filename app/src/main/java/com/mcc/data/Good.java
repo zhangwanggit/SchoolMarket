@@ -8,6 +8,9 @@ import com.mcc.app.MyApplication;
 import com.mcc.schoolmarket.BR;
 import com.mcc.tools.ToastUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by zw on 2018/5/9.
  */
@@ -30,6 +33,11 @@ public class Good extends BaseObservable{
     private boolean is_self;//是否是自己发布的
     private boolean is_collected;//是否已收藏
     private String cover_image;//封面
+    private String user_head_img;
+    private String user_nick_name;
+    private List<GoodReply> replies=new ArrayList<>();
+    private boolean user_sex;
+    private String phone;
     @Bindable
     public int getId() {
         return id;
@@ -95,21 +103,23 @@ public class Good extends BaseObservable{
     public void setImages(String images) {
         this.images = images;
     }
-
+    @Bindable
     public int getReply_num() {
         return reply_num;
     }
 
     public void setReply_num(int reply_num) {
         this.reply_num = reply_num;
+        notifyPropertyChanged(BR.reply_num);
     }
-
+    @Bindable
     public int getCollect_num() {
         return collect_num;
     }
 
     public void setCollect_num(int collect_num) {
         this.collect_num = collect_num;
+        notifyPropertyChanged(BR.collect_num);
     }
 
     public int getRead_num() {
@@ -135,13 +145,13 @@ public class Good extends BaseObservable{
     public void setSchool_id(int school_id) {
         this.school_id = school_id;
     }
-
+    @Bindable
     public boolean isIs_deal() {
         return is_deal;
     }
-
     public void setIs_deal(boolean is_deal) {
         this.is_deal = is_deal;
+        notifyPropertyChanged(BR.is_deal);
     }
 
     public boolean isIs_self() {
@@ -151,13 +161,14 @@ public class Good extends BaseObservable{
     public void setIs_self(boolean is_self) {
         this.is_self = is_self;
     }
-
+    @Bindable
     public boolean isIs_collected() {
         return is_collected;
     }
 
     public void setIs_collected(boolean is_collected) {
         this.is_collected = is_collected;
+        notifyPropertyChanged(BR.is_collected);
     }
 
     public String getCover_image() {
@@ -167,10 +178,44 @@ public class Good extends BaseObservable{
     public void setCover_image(String cover_image) {
         this.cover_image = cover_image;
     }
-    public void delete(View view){
-        ToastUtil.showShortToast("删除");
+
+    public String getUser_head_img() {
+        return user_head_img;
     }
-    public void complete(View view){
-        ToastUtil.showShortToast("完成");
+
+    public void setUser_head_img(String user_head_img) {
+        this.user_head_img = user_head_img;
+    }
+
+    public String getUser_nick_name() {
+        return user_nick_name;
+    }
+
+    public void setUser_nick_name(String user_nick_name) {
+        this.user_nick_name = user_nick_name;
+    }
+
+    public List<GoodReply> getReplies() {
+        return replies;
+    }
+
+    public void setReplies(List<GoodReply> replies) {
+        this.replies = replies;
+    }
+
+    public boolean isUser_sex() {
+        return user_sex;
+    }
+
+    public void setUser_sex(boolean user_sex) {
+        this.user_sex = user_sex;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

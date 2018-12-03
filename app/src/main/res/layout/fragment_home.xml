@@ -12,7 +12,10 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:gravity="top">
-
+    <com.andview.refreshview.XRefreshView
+        android:id="@+id/refreshView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <com.mcc.scroll.ObservableScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
@@ -37,16 +40,42 @@
                 android:background="@color/white"
                 android:paddingBottom="10dp"
                 />
-            <com.mcc.view.MyListView
-                android:id="@+id/mylistview"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/menu_list_view">
+                android:layout_below="@id/menu_list_view"
+                android:id="@+id/ll_rmtj"
+                android:background="@color/white"
+                android:orientation="vertical">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/window_bg"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="热门推荐"
+                    android:textSize="16sp"
+                    android:layout_margin="10dp"
+                    android:textStyle="bold"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/line_color"
+                    android:layout_marginBottom="10dp"/>
+            </LinearLayout>
+            <com.mcc.view.MyRecyclerView
+                android:id="@+id/myRecycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ll_rmtj"
+                >
 
-            </com.mcc.view.MyListView>
+            </com.mcc.view.MyRecyclerView>
         </RelativeLayout>
 
     </com.mcc.scroll.ObservableScrollView>
+    </com.andview.refreshview.XRefreshView>
     <RelativeLayout
         android:id="@+id/view_head"
         android:layout_width="fill_parent"
@@ -76,7 +105,7 @@
                 android:src="@drawable/white_search"
                 android:layout_marginLeft="10dp"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/tvHomeSearch"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -85,7 +114,14 @@
                 android:layout_toRightOf="@+id/imSearch"
                 android:gravity="center_vertical"
                 android:hint="请输入关键字"
-                android:textColorHint="@color/white"/>
+                android:textColorHint="@color/white"
+                android:background="@null"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:imeOptions="actionSearch"
+                android:inputType="text"/>
 
         </RelativeLayout>
     </RelativeLayout>

@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.mcc.app.MyApplication;
 import com.mcc.data.User;
 import com.mcc.schoolmarket.ChangePasswordActivity;
@@ -40,8 +41,9 @@ public class MineAccountVM {
         ImageLoader loader=new ImageLoader() {
             @Override
             public void displayImage(Context context, String path, ImageView imageView) {
-                Bitmap bitmap= MyUtil.getLoacalBitmap(path);
-                imageView.setImageBitmap(bitmap);
+/*                Bitmap bitmap= MyUtil.getLoacalBitmap(path);
+                imageView.setImageBitmap(bitmap);*/
+                Glide.with(context).load(path).into(imageView);
             }
         };
         ImgSelConfig config=new ImgSelConfig.Builder(mContext,loader)

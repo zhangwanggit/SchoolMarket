@@ -11,6 +11,7 @@ import com.mcc.schoolmarket.AboutSchoolMarketActivity;
 import com.mcc.schoolmarket.FeedBackActivity;
 import com.mcc.schoolmarket.LoginActivity;
 import com.mcc.schoolmarket.MineAccountActivity;
+import com.mcc.schoolmarket.MyCollectActivity;
 import com.mcc.schoolmarket.MyReleaseActivity;
 import com.mcc.schoolmarket.RegistActivity;
 import com.mcc.schoolmarket.databinding.FragmentMineBinding;
@@ -46,6 +47,10 @@ public class MineFragmentVM {
     }
     public void myRelease(View view){
         Intent intent=new Intent(mContext, MyReleaseActivity.class);
+        mContext.startActivity(intent);
+    }
+    public void myCollect(View view){
+        Intent intent=new Intent(mContext, MyCollectActivity.class);
         mContext.startActivity(intent);
     }
 }

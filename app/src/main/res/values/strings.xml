@@ -25,4 +25,8 @@
     <string name="title_activity_change_password">ChangePasswordActivity</string>
     <string name="title_activity_my_release">MyReleaseActivity</string>
     <string name="title_activity_release_good">ReleaseGoodActivity</string>
+    <string name="title_activity_good_detail">GoodDetailActivity</string>
+    <string name="title_activity_search_good">SearchGoodActivity</string>
+    <string name="title_activity_release_trend">ReleaseTrendActivity</string>
+    <string name="title_activity_trend_detail">TrendDetailActivity</string>
 </resources>

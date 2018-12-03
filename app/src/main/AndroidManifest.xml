@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:name="com.mcc.app.MyApplication"
@@ -50,7 +51,20 @@
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
         <activity
             android:name=".ReleaseGoodActivity"
-            android:label="@string/title_activity_release_good"></activity>
+            android:label="@string/title_activity_release_good" />
+        <activity
+            android:name=".GoodDetailActivity"
+            android:label="@string/title_activity_good_detail" />
+        <activity android:name=".MyCollectActivity" />
+        <activity
+            android:name=".SearchGoodActivity"
+            android:label="@string/title_activity_search_good" />
+        <activity
+            android:name=".ReleaseTrendActivity"
+            android:label="@string/title_activity_release_trend" />
+        <activity
+            android:name=".TrendDetailActivity"
+            android:label="@string/title_activity_trend_detail"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.mcc.adpter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.mcc.data.MenuBar;
 import com.mcc.schoolmarket.R;
+import com.mcc.schoolmarket.SearchGoodActivity;
 import com.mcc.schoolmarket.databinding.GridviewItemBinding;
 import com.mcc.tools.ToastUtil;
 
@@ -40,7 +42,9 @@ public class MenuBarAdapter extends RecyclerView.Adapter<DataBindingViewHolder> 
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtil.showShortToast(mList.get(position).getName());
+                Intent intent=new Intent(mContext, SearchGoodActivity.class);
+                intent.putExtra("class_id",position+1);
+                mContext.startActivity(intent);
             }
         });
 

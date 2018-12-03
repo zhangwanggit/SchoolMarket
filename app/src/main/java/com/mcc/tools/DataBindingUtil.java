@@ -9,6 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.mcc.app.MyApplication;
 import com.mcc.schoolmarket.R;
 import com.mcc.view.RoundAngleImageView;
 
@@ -27,8 +29,9 @@ public class DataBindingUtil {
     @BindingAdapter("setHeadImg")
     public static void setHeadImg(RoundAngleImageView img,String head_image){
         if(MyUtil.notNull(head_image)){
-            Bitmap bitmap=MyUtil.getLoacalBitmap(head_image);
-            img.setImageBitmap(bitmap);
+            /*Bitmap bitmap=MyUtil.getLoacalBitmap(head_image);
+            img.setImageBitmap(bitmap);*/
+            Glide.with(MyApplication.getContext()).load(head_image).into(img);
         }else {
             img.setImageResource(R.mipmap.school_mark_ic);
         }
@@ -41,8 +44,9 @@ public class DataBindingUtil {
     //SD卡图片
     @BindingAdapter("imageSD")
     public static void setImageFromSD(ImageView imageView,String url){
-        Bitmap bitmap=MyUtil.getLoacalBitmap(url);
-        imageView.setImageBitmap(bitmap);
+        Glide.with(MyApplication.getContext()).load(url).into(imageView);
+      /*  Bitmap bitmap=MyUtil.getLoacalBitmap2(url);
+        imageView.setImageBitmap(bitmap);*/
     }
     //设置物品类别图标
     @BindingAdapter("type_image")

@@ -22,4 +22,5 @@
     <color name="red">#DD3A38</color>
     <color name="tag_color">#a0a0a0</color>
     <color name="color_translucence">#00000000</color><!-- 全透明 -->
+    <color name="priceRed">#fa0303</color>
 </resources>

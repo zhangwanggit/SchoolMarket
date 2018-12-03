@@ -2,12 +2,13 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="good"
-            type="com.mcc.data.Good"/>
+            name="vm"
+            type="com.mcc.viewModel.MyGoodItemVM"/>
+        <import type="android.view.View"/>
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     android:paddingTop="10dp"
@@ -21,11 +22,11 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
-            app:type_image="@{good.class_id}"/>
+            app:type_image="@{vm.good.class_id}"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@{good.title}"
+        android:text="@{vm.good.title}"
         android:textSize="16sp"
         android:maxLines="1"
         android:ellipsize="end"
@@ -41,7 +42,8 @@
     <ImageView
         android:layout_width="110dp"
         android:layout_height="110dp"
-        app:imageSD="@{good.cover_image}"/>
+        app:imageSD="@{vm.good.cover_image}"
+        android:scaleType="fitXY"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,18 +61,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{good.price}"
+                android:text="@{vm.good.price}"
                 android:textColor="@color/themeColor"
                 android:textStyle="bold"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{good.old_price}"
+                android:text="@{vm.good.old_price}"
                 android:textColor="@color/gray_text"
                 android:layout_marginLeft="5dp"
                 android:textSize="12sp"
                 android:textStyle="italic"
-                app:addCenterLine="@{good.old_price}"/>
+                app:addCenterLine="@{vm.good.old_price}"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -84,7 +86,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:type_name="@{good.class_id}"
+                app:type_name="@{vm.good.class_id}"
                 android:textColor="@color/themeColor"/>
         </LinearLayout>
         <LinearLayout
@@ -98,7 +100,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{good.publishTime}"
+                android:text="@{vm.good.publishTime}"
                 android:textColor="@color/themeColor"/>
         </LinearLayout>
         <LinearLayout
@@ -114,7 +116,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{good.read_num}"
+            android:text="@{String.valueOf(vm.good.read_num)}"
             android:textColor="@color/themeColor"/>
             <ImageView
                 android:layout_width="20dp"
@@ -126,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{good.reply_num}"
+                android:text="@{String.valueOf(vm.good.reply_num)}"
                 android:textColor="@color/themeColor"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"/>
@@ -140,7 +142,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{good.collect_num}"
+                android:text="@{String.valueOf(vm.good.collect_num)}"
                 android:textColor="@color/themeColor"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"/>
@@ -155,6 +157,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="编辑"
+                android:textSize="10sp"
+                android:background="@drawable/grey_border"
+                android:onClick="@{()->vm.update(vm.position)}"
+                android:visibility="@{vm.good.is_deal?View.GONE:View.VISIBLE}"/>
         <TextView
             android:id="@+id/tv_complete"
             android:layout_width="wrap_content"
@@ -165,8 +179,10 @@
             android:paddingRight="10dp"
             android:text="成交"
             android:textSize="10sp"
+            android:layout_marginLeft="5dp"
             android:background="@drawable/grey_border"
-            android:onClick="@{good.complete}"/>
+            android:onClick="@{()->vm.complete(vm.position)}"
+            android:visibility="@{vm.good.is_deal?View.GONE:View.VISIBLE}"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -179,7 +195,8 @@
             android:textColor="@color/red"
             android:background="@drawable/red_border"
             android:layout_marginLeft="5dp"
-            android:onClick="@{good.delete}"/>
+            android:onClick="@{()->vm.delete(vm.position)}"
+            android:visibility="@{vm.good.is_deal?View.GONE:View.VISIBLE}"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -190,7 +207,8 @@
             android:text="已成交"
             android:textSize="10sp"
             android:textColor="@color/themeColor"
-            android:background="@drawable/blue_border" />
+            android:background="@drawable/blue_border"
+            android:visibility="@{vm.good.is_deal?View.VISIBLE:View.GONE}"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

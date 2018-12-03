@@ -42,7 +42,7 @@
                 android:layout_marginRight="10dp"
                 android:text="提交"
                 android:textColor="@color/themeColor"
-                android:onClick="@{vm.publish}"
+                android:onClick="@{vm.isNew?vm.publish:vm.update}"
                 />
             <View
                 android:layout_width="match_parent"
@@ -84,7 +84,8 @@
                 android:hint="请输入闲置标题"
                 android:textColorHint="@color/text_hint_color"
                 android:textSize="14sp"
-                android:text="@={vm.good.title}"/>
+                android:text="@={vm.good.title}"
+                android:maxLength="30"/>
         </LinearLayout>
 
         <View

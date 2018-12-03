@@ -88,6 +88,17 @@ public class MyUtil {
             return null;
         }
     }
+    public static Bitmap getLoacalBitmap2(String url) {
+        try {
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            //options.inSampleSize = 4;
+            FileInputStream fis = new FileInputStream(url);
+            return BitmapFactory.decodeStream(fis, null, options);  ///把流转化为Bitmap图片
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     public static boolean parseBoolean(String s){
         if(s.equals("true")||s.equals("1")){
             return true;

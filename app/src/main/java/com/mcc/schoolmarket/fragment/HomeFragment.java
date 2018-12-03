@@ -14,24 +14,32 @@ import android.support.v4.view.ScrollingView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mcc.adpter.GoodItemAdapter;
 import com.mcc.adpter.MenuBarAdapter;
 import com.mcc.app.MyApplication;
+import com.mcc.data.Good;
 import com.mcc.data.MenuBar;
 import com.mcc.schoolmarket.AboutSchoolMarketActivity;
 import com.mcc.schoolmarket.R;
+import com.mcc.schoolmarket.SearchGoodActivity;
 import com.mcc.schoolmarket.databinding.FragmentHomeBinding;
 import com.mcc.scroll.ObservableScrollView;
 import com.mcc.tools.MyUtil;
+import com.mcc.tools.RefreshViewUtil;
 import com.mcc.view.ImageCycleView;
+import com.mcc.view.LoadMoreView;
 import com.mcc.view.MyListView;
 import com.mcc.viewModel.HomeFragmentVM;
 import com.mcc.viewModel.LoginVM;
@@ -43,7 +51,7 @@ import java.util.List;
  * Created by zw on 2018/5/2.
  */
 
-public class HomeFragment extends Fragment implements ObservableScrollView.ScrollViewListener{
+public class HomeFragment extends Fragment implements ObservableScrollView.ScrollViewListener,LoadMoreView{
     private Activity activity;
     private View top;
     private ImageCycleView mImageCycleView;//轮播的空间
@@ -52,6 +60,8 @@ public class HomeFragment extends Fragment implements ObservableScrollView.Scrol
     private HomeFragmentVM vm;
     private List<MenuBar> menuBarList=new ArrayList<>();
     private  MenuBarAdapter adapter;
+    private List<Good> goodList=new ArrayList<>();
+    private GoodItemAdapter goodItemAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
@@ -82,9 +92,30 @@ public class HomeFragment extends Fragment implements ObservableScrollView.Scrol
         binding.menuListView.setLayoutManager(layoutManager);
         adapter=new MenuBarAdapter(menuBarList,activity);
         binding.menuListView.setAdapter(adapter);
-        String[] data={"A","B","C","D","E","F","G","H","I","J","K","L","M","N"};
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(activity,android.R.layout.simple_list_item_1,data);
-        binding.mylistview.setAdapter(adapter);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(activity);
+        binding.myRecycler.setLayoutManager(linearLayoutManager);
+        goodItemAdapter=new GoodItemAdapter(goodList,activity);
+        binding.myRecycler.setAdapter(goodItemAdapter);
+        binding.myRecycler.setNestedScrollingEnabled(false);
+        RefreshViewUtil.configXRfreshView(binding.refreshView, true, false, this);
+        binding.tvHomeSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    String keyword = binding.tvHomeSearch.getText().toString();
+                    if (keyword != null && !"".equals(keyword)) {
+                        Intent intent=new Intent(activity, SearchGoodActivity.class);
+                        intent.putExtra("keyword",keyword);
+                        startActivity(intent);
+                        binding.tvHomeSearch.setText("");
+                    } else {
+                        Toast.makeText(activity, "请输入搜索内容", Toast.LENGTH_SHORT).show();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
     }
     //增加横幅的view
     public void addview(List<ImageCycleView.ImageInfo> list) {
@@ -129,8 +160,14 @@ public class HomeFragment extends Fragment implements ObservableScrollView.Scrol
 
     }
     public void setMenuList(List<MenuBar> list){
+        menuBarList.clear();
         menuBarList.addAll(list);
         adapter.notifyDataSetChanged();
+    }
+    public void setGoodList(List<Good> list){
+        goodList.clear();
+        goodList.addAll(list);
+        goodItemAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -156,5 +193,16 @@ public class HomeFragment extends Fragment implements ObservableScrollView.Scrol
             binding.tvHomeSearch.setTextColor(ContextCompat.getColor(getActivity(), R.color.search_text_gray));
             binding.tvHomeSearch.setHintTextColor(ContextCompat.getColor(getActivity(), R.color.search_text_gray));
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        vm.findGoodList();
+        binding.refreshView.stopRefresh();
+    }
+
+    @Override
+    public void onLoadMore() {
+
     }
 }
