@@ -8,4 +8,19 @@
     <color name="transparent">#00000000</color>
     <color name="grey0">#e9e9e9</color>
     <color name="blue">#0080FF</color>
+    <color name="line_color">#e6e6e6</color>
+    <color name="grey">#bababa</color>
+    <color name="background_color">#f5f4fa</color>
+    <!--标题搜索栏字体-->
+    <color name="search_text_gray">#979797</color>
+    <color name="title_black">#333438</color>
+    <color name="my_main_text">#333333</color>
+    <color name="window_bg">#ebebeb</color>
+    <color name="black">#ff000000</color>
+    <color name="text_hint_color">#a1a1a1</color>
+    <color name="gray_text">#A0A0A0</color>
+    <color name="red">#DD3A38</color>
+    <color name="tag_color">#a0a0a0</color>
+    <color name="color_translucence">#00000000</color><!-- 全透明 -->
+    <color name="priceRed">#fa0303</color>
 </resources>

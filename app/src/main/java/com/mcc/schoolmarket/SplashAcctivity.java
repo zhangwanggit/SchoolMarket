@@ -5,6 +5,8 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 
+import com.mcc.sharedPreferences.MySharePreferences;
+
 public class SplashAcctivity extends BaseActivity {
     private AlphaAnimation start_anima;
     View view;
@@ -41,8 +43,13 @@ public class SplashAcctivity extends BaseActivity {
         });
     }
     private void redirectTo(){
-        Intent intent =new Intent(mContext,LoginActivity.class);
-        startActivity(intent);
+        if(MySharePreferences.GetInstance(mContext).getLogin()) {//已登陆，跳转到主界面
+            Intent intent = new Intent(mContext, MainActivity.class);
+            startActivity(intent);
+        }else {//未登录，跳转到登录界面
+            Intent intent = new Intent(mContext, LoginActivity.class);
+            startActivity(intent);
+        }
         finish();
     }
 }

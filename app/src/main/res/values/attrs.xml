@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="gp_RoundAngleImageView">
+        <attr name="gp_roundwidth" format="dimension"/>
+        <attr name="gp_roundheight" format="dimension"/>
+    </declare-styleable>
+</resources>

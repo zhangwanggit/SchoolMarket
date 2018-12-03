@@ -11,7 +11,7 @@ import com.mcc.app.MyApplication;
 
 public class ToastUtil {
     private static Toast mToast = null;
-    public  void showShortToast(String text) {
+    public static void showShortToast(String text) {
         if (mToast == null) {
             mToast = Toast.makeText(MyApplication.getContext(), text, Toast.LENGTH_SHORT);
         } else {
@@ -20,7 +20,7 @@ public class ToastUtil {
         }
         mToast.show();
     }
-    public  void showLongToast(String text){
+    public static void showLongToast(String text){
         if (mToast == null) {
             mToast = Toast.makeText(MyApplication.getContext(), text, Toast.LENGTH_LONG);
         } else {
